@@ -9,6 +9,8 @@ import { Mail, ArrowRight, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || (typeof window !== "undefined" ? window.location.origin : "")
+
 function LoginContent() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
@@ -26,7 +28,7 @@ function LoginContent() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?redirect=${redirect}`,
+          emailRedirectTo: `${appUrl}/auth/callback?redirect=${redirect}`,
         },
       })
 
@@ -47,7 +49,7 @@ function LoginContent() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback?redirect=${redirect}`,
+          redirectTo: `${appUrl}/auth/callback?redirect=${redirect}`,
         },
       })
       if (error) throw error
