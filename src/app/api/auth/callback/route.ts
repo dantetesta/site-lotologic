@@ -6,16 +6,19 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lotologic-web.y0hzq4.
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const code = searchParams.get("code")
-  const redirect = searchParams.get("redirect") || "/dashboard"
+  const next = searchParams.get("redirect") || "/dashboard"
 
   if (code) {
     const supabase = await createClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
-      return NextResponse.redirect(`${appUrl}${redirect}`)
+
+    if (error) {
+      console.error("Auth exchange error:", error.message)
+      return NextResponse.redirect(`${appUrl}/login?error=auth_failed&detail=${encodeURIComponent(error.message)}`)
     }
+
+    return NextResponse.redirect(`${appUrl}${next}`)
   }
 
-  // Auth error — redirect to login
-  return NextResponse.redirect(`${appUrl}/login?error=auth_failed`)
+  return NextResponse.redirect(`${appUrl}/login?error=no_code`)
 }

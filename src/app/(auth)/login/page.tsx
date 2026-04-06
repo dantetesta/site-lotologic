@@ -28,7 +28,7 @@ function LoginContent() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${appUrl}/auth/callback?redirect=${redirect}`,
+          emailRedirectTo: `${appUrl}/api/auth/callback?redirect=${redirect}`,
         },
       })
 
@@ -49,7 +49,7 @@ function LoginContent() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${appUrl}/auth/callback?redirect=${redirect}`,
+          redirectTo: `${appUrl}/api/auth/callback?redirect=${redirect}`,
         },
       })
       if (error) throw error
