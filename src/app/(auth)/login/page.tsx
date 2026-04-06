@@ -67,9 +67,9 @@ function LoginContent() {
               L
             </div>
           </Link>
-          <h1 className="text-2xl font-bold">Entrar no LotoLogic</h1>
+          <h1 className="text-2xl font-bold">Entrar ou Criar Conta</h1>
           <p className="text-sm text-muted-foreground mt-2">
-            Salve seus jogos e confira resultados automaticamente
+            Crie sua conta grátis ou entre para salvar jogos e conferir resultados
           </p>
         </div>
 
@@ -163,8 +163,8 @@ function LoginContent() {
 
         {/* Info */}
         <p className="text-[10px] text-muted-foreground/60 text-center mt-6 leading-relaxed">
-          Sem senha para lembrar. Enviamos um link seguro para seu email que
-          expira em 15 minutos. Ao continuar, você concorda com nossos termos.
+          Se você ainda não tem conta, uma será criada automaticamente.
+          Sem senha — enviamos um link mágico que expira em 15 minutos.
         </p>
 
         {/* Back */}
